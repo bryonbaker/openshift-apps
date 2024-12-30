@@ -12,7 +12,7 @@ spec:
     repoURL: https://github.com/bryonbaker/openshift-apps
     targetRevision: main
   sources: []
-  project: default
+  project: shakeout-app
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
