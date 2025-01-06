@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: minio
+  namespace: openshift-gitops
+spec:
+  destinations:
+  - name: '*'
+    namespace: minio
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - https://github.com/bryonbaker/openshift-apps
+
