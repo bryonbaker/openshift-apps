@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sleeper
+spec:
+  destination:
+    name: ''
+    namespace: sleeper
+    server: https://kubernetes.default.svc
+  source:
+    path: minio/overlays/sleeper
+    repoURL: https://github.com/bryonbaker/openshift-apps
+    targetRevision: main
+  sources: []
+  project: sleeper
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false

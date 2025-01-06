@@ -1,0 +1,12 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: sleeper
+  namespace: openshift-gitops
+spec:
+  destinations:
+  - name: '*'
+    namespace: sleeper
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - https://github.com/bryonbaker/openshift-apps
