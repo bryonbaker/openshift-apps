@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio
+spec:
+  destination:
+    name: ''
+    namespace: minio
+    server: https://kubernetes.default.svc
+  source:
+    path: minio/overlays/lvm
+    repoURL: https://github.com/bryonbaker/openshift-apps
+    targetRevision: main
+  sources: []
+  project: minio
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
