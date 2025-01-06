@@ -16,4 +16,5 @@ spec:
   project: sleeper
   syncPolicy:
     syncOptions:
+      automated: {}
       - CreateNamespace=false
