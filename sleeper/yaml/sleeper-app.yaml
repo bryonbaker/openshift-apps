@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: sleeper
-  namespace: openshift-gitops
 spec:
   destination:
     name: ''
@@ -16,5 +15,7 @@ spec:
   project: sleeper
   syncPolicy:
     syncOptions:
-      automated: {}
-      - CreateNamespace=false
+      - CreateNamespace=true
+    automated:
+      prune: false
+      selfHeal: false
