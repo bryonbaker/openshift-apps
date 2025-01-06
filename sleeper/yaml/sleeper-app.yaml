@@ -8,7 +8,7 @@ spec:
     namespace: sleeper
     server: https://kubernetes.default.svc
   source:
-    path: minio/overlays/sleeper
+    path: sleeper/overlays
     repoURL: https://github.com/bryonbaker/openshift-apps
     targetRevision: main
   sources: []
