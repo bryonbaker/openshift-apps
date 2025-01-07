@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - logging-loki-s3-secret.yaml
-  - loki-stack.yaml
+#  - loki-stack.yaml
 #  - cluster-log-forwarder.yaml
 #  - logging-ui-plugin.yaml
 #  - log-collector-sa.yaml
