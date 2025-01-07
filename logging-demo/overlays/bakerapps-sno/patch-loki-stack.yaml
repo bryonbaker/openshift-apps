@@ -1,0 +1,7 @@
+apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  name: logging-loki
+spec:
+  size: 1x.demo
+  storageClassName: lvms-vg1

@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - logging-loki-s3-secret.yaml
+  - loki-stack.yaml
+#  - cluster-log-forwarder.yaml
+#  - logging-ui-plugin.yaml
+#  - log-collector-sa.yaml
+#  - collector-crb.yaml
