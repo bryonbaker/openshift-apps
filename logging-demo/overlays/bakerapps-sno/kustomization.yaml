@@ -7,4 +7,3 @@ resources:
 
 patchesStrategicMerge:
   - patch-loki-s3-secret.yaml
-
