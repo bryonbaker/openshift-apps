@@ -6,4 +6,4 @@ resources:
   - ../../base
 
 patchesStrategicMerge:
-  - patch-loki-s3-secret.yaml
+  - patch-loki-stack.yaml
