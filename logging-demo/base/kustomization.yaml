@@ -6,3 +6,5 @@ resources:
   - loki-stack.yaml
   - collector-sa.yaml
   - role-bindings.yaml
+  - observability-ui-plugin.yaml
+  - cluster-log-forwarder.yaml
