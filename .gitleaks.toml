@@ -3,4 +3,5 @@
 
   paths = [
     "logging-demo/overlays/bakerapps/patch-loki-s3-secret.yaml"
+    "logging-demo/minio/base/minio-secret.yaml"
   ]
