@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    bakerapps.net/comment: "Service account for for the demo"
+  name: collector-sa
+  namespace: openshift-logging
