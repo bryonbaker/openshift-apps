@@ -1,6 +1,6 @@
-[allowlist]
+[[allowlist]]
   description = "Global Allowlist"
 
   paths = [
-    logging-demo\/overlays\/bakerapps\/patch-loki-s3-secret.yaml
+    "logging-demo/overlays/bakerapps/patch-loki-s3-secret.yaml"
   ]
