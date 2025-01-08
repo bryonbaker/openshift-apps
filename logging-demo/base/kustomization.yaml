@@ -5,3 +5,4 @@ resources:
   - logging-loki-s3-secret.yaml
   - loki-stack.yaml
   - collector-sa.yaml
+  - role-bindings.yaml
