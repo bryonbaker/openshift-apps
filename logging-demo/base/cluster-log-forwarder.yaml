@@ -28,4 +28,4 @@ spec:
       outputRefs:
         - logging-http
   serviceAccount:
-    name: log-collector-sa
+    name: collector-sa
