@@ -3,8 +3,9 @@ kind: Kustomization
 
 # Reference the base directory
 resources:
-  - ../../base
+- ../../base
 
-patchesStrategicMerge:
-  - patch-loki-s3-secret.yaml
-  - patch-loki-stack.yaml
+patches:
+- path: patch-openshift-logging-ns.yaml
+- path: patch-loki-s3-secret.yaml
+- path: patch-loki-stack.yaml

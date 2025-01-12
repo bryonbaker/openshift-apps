@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  - openshift-logging-ns.yaml
   - logging-loki-s3-secret.yaml
   - loki-stack.yaml
   - collector-sa.yaml
