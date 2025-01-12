@@ -2,10 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  # Install all operators
   - openshift-logging-ns.yaml
+  - openshift-logging-og.yaml
+  - cluster-logging-sub.yaml
+
+  # Configure service accounts, roles and secrets
   - logging-loki-s3-secret.yaml
-  - loki-stack.yaml
   - collector-sa.yaml
   - role-bindings.yaml
-  - observability-ui-plugin.yaml
+
+  # Create Operator Instances
+  - loki-stack.yaml
   - cluster-log-forwarder.yaml
+  - observability-ui-plugin.yaml
