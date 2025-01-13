@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  # Install all operators for the observability stack.
+  # Instances are deployed in specific kustomize projects.
+  - openshift-logging-ns.yaml
+  - openshift-logging-og.yaml
+  - openshift-logging-sub.yaml
+
+  - loki-og.yaml
+  - loki-sub.yaml
+  - openshift-logging-loki-s3-secret.yaml
+  - loki-stack.yaml
+
+  - cluster-observability-sub.yaml
