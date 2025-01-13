@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-logger
+  namespace: http-logger
+  labels:
+    app: http-logger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http-logger
+  template:
+    metadata:
+      labels:
+        app: http-logger
+    spec:
+      containers:
+      - name: http-logger
+        image: quay.io/bryonbaker/http-logger:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9001
+          protocol: TCP
+        args:
+        - "--port"
+        - "9001"          # Overriding the default port from 9000 to 9001
+      restartPolicy: Always
