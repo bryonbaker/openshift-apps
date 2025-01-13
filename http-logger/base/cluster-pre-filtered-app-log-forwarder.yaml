@@ -11,6 +11,11 @@ spec:
         includes:
           - namespace: "sleeper"
       type: application
+    - name: mylogs2
+      application:
+        includes:
+          - namespace: "sleeper"
+      type: audit
   outputs:
     - lokiStack:
         authentication:
@@ -37,6 +42,7 @@ spec:
   pipelines:
     - inputRefs:
         - mylogs
+        - mylogs2
 #      filterRefs:
 #        - monitor-namespace
       outputRefs:
