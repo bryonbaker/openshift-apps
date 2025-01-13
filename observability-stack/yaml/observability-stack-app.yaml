@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: logging-stack
+spec:
+  destination:
+    name: ''
+    namespace: '*'
+    server: https://kubernetes.default.svc
+  source:
+    path: observability-stack/overlays/bakerapps
+    repoURL: https://github.com/bryonbaker/openshift-apps
+    targetRevision: main
+  sources: []
+  project: openshift-logging
+  syncPolicy:
+    automated: null
+
