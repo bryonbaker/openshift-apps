@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: http-logger
+  namespace: openshift-gitops
+spec:
+  destination:
+    name: ''
+    namespace: http-logger
+    server: https://kubernetes.default.svc
+  source:
+    path: http-logger/base
+    repoURL: https://github.com/bryonbaker/openshift-apps
+    targetRevision: main
+  sources: []
+  project: http-logger
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: false
+      selfHeal: false
