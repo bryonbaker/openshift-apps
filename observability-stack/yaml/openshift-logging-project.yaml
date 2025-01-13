@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: openshift-logging
+  namespace: openshift-gitops
+spec:
+  # Thie is too wide and needs limiting. But dmeos well....
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  description: Automation for configuring the operators in OpenShift Logging
+  destinations:
+  - name: '*'
+    namespace: openshift-logging
+    server: https://kubernetes.default.svc
+  - name: '*'
+    namespace: openshift-operators
+    server: https://kubernetes.default.svc
+  - name: '*'
+    namespace: openshift-operators-redhat
+    server: https://kubernetes.default.svc
+  - name: '*'
+    namespace: '*'
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - https://github.com/bryonbaker/openshift-apps
