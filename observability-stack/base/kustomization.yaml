@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   # Install all operators for the observability stack.
   # Instances are deployed in specific kustomize projects.
-  - openshift-logging-ns.yaml
+#  - openshift-logging-ns.yaml
   - openshift-logging-og.yaml
   - openshift-logging-sub.yaml
 

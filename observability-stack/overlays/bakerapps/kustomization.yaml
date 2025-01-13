@@ -6,6 +6,6 @@ resources:
 - ../../base
 
 patches:
-- path: patch-openshift-logging-ns.yaml
+#- path: patch-openshift-logging-ns.yaml
 - path: patch-loki-stack.yaml
 - path: patch-loki-s3-secret.yaml
