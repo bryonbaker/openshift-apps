@@ -12,7 +12,7 @@ spec:
           - namespace: "sleeper"
       type: application
     - name: mylogs2
-      application:
+      audit:
         includes:
           - namespace: "sleeper"
       type: audit
