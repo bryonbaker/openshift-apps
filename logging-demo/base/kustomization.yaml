@@ -7,6 +7,5 @@ resources:
   - role-bindings.yaml
 
   # Create Operator Instances
-  - loki-stack.yaml
   - cluster-log-forwarder.yaml
   - observability-ui-plugin.yaml
