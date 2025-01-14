@@ -6,16 +6,19 @@ metadata:
 spec:
   managementState: Managed
   inputs:
-    - name: mylogs
-      application:
-        includes:
-          - namespace: "sleeper"
-      type: application
-    - name: mylogs2
-      audit:
-        includes:
-          - namespace: "sleeper"
+
+
+#     - name: my-app-logs
+#       type: application
+#       application:
+#         includes:
+#           - namespace: "sleeper"
+    - name: my-audit-logs
       type: audit
+      audit:
+        sources:
+          - kubeAPI
+          - openshiftAPI
   outputs:
     - lokiStack:
         authentication:
@@ -37,14 +40,16 @@ spec:
       type: drop
       drop:
       - test:
-        - field: .kubernetes.namespace_name
+        - field: .objectRef.namespace
           notMatches: "sleeper"
+      - test:
+        - field: .objectRef.resource
+          notMatches: "pods"
   pipelines:
     - inputRefs:
-        - mylogs
-        - mylogs2
-#      filterRefs:
-#        - monitor-namespace
+        - audit
+      filterRefs:
+        - monitor-namespace
       outputRefs:
         - logging-http
       name: app-logs-pipeline
