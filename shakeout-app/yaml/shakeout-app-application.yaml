@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: shakeout-app
+spec:
+  destination:
+    name: ''
+    namespace: shakeout-app
+    server: https://kubernetes.default.svc
+  source:
+    path: shakeout-app/overlays/rosa
+    repoURL: https://github.com/bryonbaker/openshift-apps
+    targetRevision: main
+  sources: []
+  project: shakeout
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
+
