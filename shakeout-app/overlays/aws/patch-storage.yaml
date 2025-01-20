@@ -3,4 +3,4 @@ kind: PersistentVolumeClaim
 metadata:
   name: shakeout-app-pvc
 spec:
-  storageClassName: gp3-csi
+  storageClassName: gp2-csi
