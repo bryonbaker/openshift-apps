@@ -3,4 +3,4 @@ kind: PersistentVolumeClaim
 metadata:
   name: minio-pvc
 spec:
-  storageClassName: gp3
+  storageClassName: gp3-csi
