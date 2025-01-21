@@ -1,0 +1,7 @@
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: filtered-app-logging
+spec:
+      http:
+        url: 'http://http-logger-route-http-logger.apps.awsocp.sandbox2969.opentlc.com/'
