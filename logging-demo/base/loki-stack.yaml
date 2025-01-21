@@ -5,13 +5,13 @@ metadata:
   namespace: openshift-logging
 spec:
   managementState: Managed
-  size: 1x.extra-small
+  size: 1x.demo
   storage:
     schemas:
     - effectiveDate: '2024-10-01'
       version: v13
     secret:
-      name: logging-loki-s3-secret
+      name: openshift-logging-loki-s3-secret
       type: s3
   storageClassName: gp3-csi
   tenants:
