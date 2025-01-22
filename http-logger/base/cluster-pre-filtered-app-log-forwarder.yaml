@@ -27,7 +27,7 @@ spec:
         target: # This is the name of the Loki Stack installed via the Operator
           name: logging-loki
       http:
-        url: 'http://http-logger-route-http-logger.apps.sno.bakerapps.net/'
+        url: 'http://http-logger-route-http-logger.apps.awsocp.sandbox2969.opentlc.com/'
         method: POST
       tls:
         ca:
@@ -36,15 +36,20 @@ spec:
       name: logging-http
       type: http
   filters:
-    - name: monitor-namespace
-      type: drop
-      drop:
-      - test:
-        - field: .objectRef.namespace
-          notMatches: "sleeper"
-      - test:
-        - field: .objectRef.resource
-          notMatches: "pods"
+  - drop:
+    - test:
+      - field: .objectRef.namespace
+        notMatches: sleeper
+    - test:
+      - field: .objectRef.resource
+        notMatches: virtualmachineinstances
+      - field: .objectRef.resource
+        notMatches: pods
+    - test:
+      - field: .verb
+        notMatches: create
+      - field: .verb
+        notMatches: delete
   pipelines:
     - inputRefs:
         - audit
