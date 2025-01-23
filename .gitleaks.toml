@@ -5,5 +5,6 @@
     "observability-stack/overlays/bakerapps/patch-loki-s3-secret.yaml"
     "observability-stack/overlays/rosa/patch-loki-s3-secret.yaml"
     "logging-demo/overlays/bakerapps/patch-loki-s3-secret.yaml"
+    "logging-demo/base/logging-loki-s3-secret.yaml"
     "minio/base/minio-secret.yaml"
   ]
