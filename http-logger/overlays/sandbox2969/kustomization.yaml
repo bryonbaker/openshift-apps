@@ -3,8 +3,8 @@ kind: Kustomization
 
 # Reference the base directory
 resources:
-  - ../../base
+- ../../base
 
-patchesStrategicMerge:
-  - patch-cluster-log-forwarder.yaml
+patches:
+- path: patch-cluster-log-forwarder.yaml
 
