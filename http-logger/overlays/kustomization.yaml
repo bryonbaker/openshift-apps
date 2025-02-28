@@ -3,7 +3,7 @@ kind: Kustomization
 
 # Reference the base directory
 resources:
-- ../../base
+- ../base
 
 patches:
 - path: patch-cluster-log-forwarder.yaml
