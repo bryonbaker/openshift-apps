@@ -5,18 +5,10 @@ metadata:
   namespace: openshift-gitops
 spec:
   destination:
-    name: ''
     namespace: sleeper
     server: https://kubernetes.default.svc
-  source:
-    path: sleeper/base
-    repoURL: https://github.com/bryonbaker/openshift-apps
-    targetRevision: main
-  sources: []
   project: sleeper
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-    automated:
-      prune: false
-      selfHeal: false
+  source:
+    path: sleeper/overlays
+    repoURL: https://github.com/bryonbaker/openshift-apps
+    targetRevision: HEAD

@@ -4,9 +4,15 @@ metadata:
   name: sleeper
   namespace: openshift-gitops
 spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
   destinations:
   - name: '*'
-    namespace: sleeper
+    namespace: '*'
     server: https://kubernetes.default.svc
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
   sourceRepos:
   - https://github.com/bryonbaker/openshift-apps
