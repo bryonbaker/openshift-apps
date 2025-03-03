@@ -1,0 +1,47 @@
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: kafka-filtered-app-logging
+  namespace: http-logger
+spec:
+  filters:
+  - drop:
+    - test:
+      - field: .objectRef.namespace
+        notMatches: sleeper
+    - test:
+      - field: .objectRef.resource
+        notMatches: virtualmachineinstances
+      - field: .objectRef.resource
+        notMatches: pods
+    - test:
+      - field: .verb
+        notMatches: create
+      - field: .verb
+        notMatches: delete
+    name: monitor-namespace
+    type: drop
+  inputs:
+  - audit:
+      sources:
+      - kubeAPI
+      - openshiftAPI
+    name: my-audit-logs
+    type: audit
+  managementState: Managed
+  outputs:
+  - name: logging-kafka
+    type: kafka
+    kafka:
+      url: 'http://logging-cluster-kafka-bootstrap.streams-kafka.svc.cluster.local:9092'
+      topic: cluster-events
+  pipelines:
+  - filterRefs:
+    - monitor-namespace
+    inputRefs:
+    - audit
+    name: app-logs-pipeline
+    outputRefs:
+    - logging-kafka
+  serviceAccount:
+    name: http-log-collector-sa

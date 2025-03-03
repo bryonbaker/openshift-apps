@@ -1,0 +1,47 @@
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: http-filtered-app-logging
+  namespace: http-logger
+spec:
+  filters:
+  - drop:
+    - test:
+      - field: .objectRef.namespace
+        notMatches: sleeper
+    - test:
+      - field: .objectRef.resource
+        notMatches: virtualmachineinstances
+      - field: .objectRef.resource
+        notMatches: pods
+    - test:
+      - field: .verb
+        notMatches: create
+      - field: .verb
+        notMatches: delete
+    name: monitor-namespace
+    type: drop
+  inputs:
+  - audit:
+      sources:
+      - kubeAPI
+      - openshiftAPI
+    name: my-audit-logs
+    type: audit
+  managementState: Managed
+  outputs:
+  - name: logging-html
+    type: http
+    http:
+      url: 'http://http-logger-route-http-logger.apps.awsocp.sandbox2969.opentlc.com/'
+      method: POST
+  pipelines:
+  - filterRefs:
+    - monitor-namespace
+    inputRefs:
+    - audit
+    name: app-logs-pipeline
+    outputRefs:
+    - logging-html
+  serviceAccount:
+    name: http-log-collector-sa
