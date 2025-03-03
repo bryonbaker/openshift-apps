@@ -6,8 +6,6 @@ metadata:
 spec:
   managementState: Managed
   inputs:
-
-
 #     - name: my-app-logs
 #       type: application
 #       application:
@@ -20,21 +18,28 @@ spec:
           - kubeAPI
           - openshiftAPI
   outputs:
-    - lokiStack:
-        authentication:
-          token:
-            from: serviceAccount
-        target: # This is the name of the Loki Stack installed via the Operator
-          name: logging-loki
+    # - name: default-lokistack
+    #   type: lokistack
+    #   lokiStack:
+    #     authentication:
+    #       token:
+    #         from: serviceAccount
+    #     target: # This is the name of the Loki Stack installed via the Operator
+    #       name: logging-loki
+    #   tls:
+    #     ca:
+    #       configMapName: openshift-service-ca.crt
+    #       key: service-ca.crt
+    - name: logging-http
+      type: http
       http:
         url: 'http://http-logger-route-http-logger.apps.awsocp.sandbox2969.opentlc.com/'
         method: POST
-      tls:
-        ca:
-          configMapName: openshift-service-ca.crt
-          key: service-ca.crt
-      name: logging-http
-      type: http
+    # - name: logging-kafka
+    #   type: kafka
+    #   kafka:
+    #     url: 'http://logging-cluster-kafka-bootstrap.streams-kafka.svc.cluster.local:9092'
+    #     topic: cluster-events
   filters:
   - drop:
     - test:
@@ -57,6 +62,8 @@ spec:
         - monitor-namespace
       outputRefs:
         - logging-http
+#        - logging-kafka
+#        - logging-loki
       name: app-logs-pipeline
   serviceAccount:
     name: http-log-collector-sa
