@@ -1,0 +1,2 @@
+# Documentation Notes
+The Red Hat documentation is incomplete. This is a link to the upstream doco: https://github.com/openshift/cluster-logging-operator/blob/master/docs/reference/operator/api_observability_v1.adoc
