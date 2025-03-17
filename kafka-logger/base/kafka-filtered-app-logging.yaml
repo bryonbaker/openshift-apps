@@ -1,0 +1,50 @@
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: kafka-filtered-app-logging
+  namespace: http-logger
+spec:
+  filters:
+  - drop:
+    - test:
+      - field: .objectRef.namespace
+#       This example only works with a project names "sleeper"
+#       Forward any pod or VMI create/delete events to the Kafka topic below.
+#       This example is using an unauthenticated Kafka endpoint.
+        notMatches: sleeper
+    - test:
+      - field: .objectRef.resource
+        notMatches: virtualmachineinstances
+      - field: .objectRef.resource
+        notMatches: pods
+    - test:
+      - field: .verb
+        notMatches: create
+      - field: .verb
+        notMatches: delete
+    name: monitor-namespace
+    type: drop
+  inputs:
+  - audit:
+      sources:
+      - kubeAPI
+      - openshiftAPI
+    name: my-audit-logs
+    type: audit
+  managementState: Managed
+  outputs:
+  - kafka:
+      topic: cluster-events
+      url: http://logging-cluster-kafka-bootstrap.streams-kafka.svc.cluster.local:9092
+    name: logging-kafka
+    type: kafka
+  pipelines:
+  - filterRefs:
+    - monitor-namespace
+    inputRefs:
+    - audit
+    name: app-logs-pipeline
+    outputRefs:
+    - logging-kafka
+  serviceAccount:
+    name: http-log-collector-sa
